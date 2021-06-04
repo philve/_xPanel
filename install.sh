@@ -102,7 +102,7 @@ checkport
 pre_install		
 if [ ! -d /etc/Xray ];then
 	mkdir -p /etc/Xray
-	if [ ! -f /etc/Xray/dns.json];then
+	if [ ! -f /etc/Xray/dns.json ];then
 		wget -q https://raw.githubusercontent.com/frainzy1477/Xray-Backend/master/dns.json -O /etc/Xray/dns.json
 	fi
 	if [ ! -f /etc/Xray/rulelist ];then
