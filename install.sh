@@ -126,7 +126,7 @@ services:
   $custom_name: 
     image: frainzy1477/xray-server:latest
     volumes:
-	  - /etc/Xray/:/etc/Xray
+      - /etc/Xray/:/etc/Xray
       - ./config.yml:/etc/Xray/config.yml
       - ./dns.json:/etc/Xray/dns.json
       - ./rulelist:/etc/Xray/rulelist 
