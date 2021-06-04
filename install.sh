@@ -109,7 +109,7 @@ if [ ! -d /etc/Xray ];then
 		wget -q https://raw.githubusercontent.com/frainzy1477/Xray-Backend/master/rulelist -O /etc/Xray/rulelist
 	fi
 fi
-if [ $CertMode == "file"]	
+if [ $CertMode == "file" ];then	
 	install_acme
 fi
 if [ -z "$(which docker)" ];then
