@@ -248,7 +248,7 @@ pre_install(){
     echo "---------------------------"
     echo
 
-	if [ $node_type == "V2ray"];then
+    if [ $node_type == "V2ray" ];then
     echo -e "${green}Enable Vless / 启用Vless${plain}"
     read -p "(Default false【false, true】):" EnableVless
     if [ -z "$EnableVless" ];then
@@ -259,11 +259,11 @@ pre_install(){
     echo "Enable Vless = $EnableVless"
     echo "---------------------------"
     echo
-	else
-	EnableVless="false"
-	fi
+    else
+    EnableVless="false"
+    fi
 	
-	if [ $node_type == "V2ray" ] || [ $node_type == "Trojan" ];then
+    if [ $node_type == "V2ray" ] || [ $node_type == "Trojan" ];then
     echo -e "${green}Enable XTLS / 启用XTLS${plain}"
     read -p "(Default false【false, true】):" EnableXTLS
     if [ -z "$EnableXTLS" ];then
@@ -274,9 +274,9 @@ pre_install(){
     echo "Enable XTLS = $EnableXTLS"
     echo "---------------------------"
     echo
-	else
-	EnableXTLS="false"
-	fi
+    else
+    EnableXTLS="false"
+    fi
 
     echo -e "${green}Enable DNS/ 启用DNS${plain}"
     read -p "(Default false【false, true】):" EnableDNS
@@ -300,7 +300,7 @@ pre_install(){
     echo "---------------------------"
     echo
 	
-	if [ $CertMode == "dns"] || [ $CertMode == "http"];then
+    if [ $CertMode == "dns" ] || [ $CertMode == "http" ];then
     echo -e "${green}Cloudflare Email /Cloudflare邮件${plain}"
     read -p "(Default : No default value):" CLOUDFLARE_EMAIL
     echo
@@ -317,7 +317,7 @@ pre_install(){
     echo "---------------------------"
     echo 
 	
-	fi
+    fi
 	
     echo -e "${green}PanelUrl / 网站地址${plain}"
     read -p "(Default : No default value):" panelurl
