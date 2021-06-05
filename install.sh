@@ -130,6 +130,8 @@ services:
       - ./config.yml:/etc/Xray/config.yml
       - ./dns.json:/etc/Xray/dns.json
       - ./rulelist:/etc/Xray/rulelist 
+      - ./$your_domain.crt:/etc/Xray/$your_domain.crt
+      - ./$your_domain.key:/etc/Xray/$your_domain.key
     restart: always
     network_mode: host
 
@@ -140,7 +142,7 @@ Log:
   Level: $log_level 
   AccessPath: #/etc/Xray/access.Log
   ErrorPath: #/etc/Xray/error.log
-DnsConfigPath: /etc/Xray/dns.json  Path to dns config
+DnsConfigPath: /etc/Xray/dns.json # Path to dns config
 Nodes:
   -
     PanelType: "SSpanel"
