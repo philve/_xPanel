@@ -119,6 +119,7 @@ if [ -z "$(which docker_compose)" ];then
 	install_docker_compose
 fi
 firewall_allow
+systemctl daemon-reload
 
 cat > /etc/Xray/docker-compose.yml <<-EOF
 version: '3'
