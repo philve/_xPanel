@@ -154,10 +154,23 @@ Nodes:
       Timeout: 30 
       EnableVless: $EnableVless 
       EnableXTLS: $EnableXTLS 
+	  SpeedLimit: 0 # Local settings will replace remote settings, 0 means disable
+      DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
+      RuleListPath: /etc/Xray/rulelist #Path to local rulelist file
     ControllerConfig:
-      ListenIP: 0.0.0.0 
-      UpdatePeriodic: 60 #
-      EnableDNS: $EnableDNS 
+      ListenIP: 0.0.0.0 # IP address you want to listen
+      SendIP: 0.0.0.0 # IP address you want to send pacakage
+      UpdatePeriodic: 60 # Time to update the nodeinfo, how many sec.
+      EnableDNS: $EnableDNS # Use custom DNS config, Please ensure that you set the dns.json well
+      DNSType: AsIs # AsIs, UseIP, UseIPv4, UseIPv6, DNS strategy
+      EnableProxyProtocol: false # Only works for WebSocket and TCP
+      EnableFallback: false # Only support for Trojan and Vless
+      FallBackConfigs:  # Support multiple fallbacks
+        -
+          SNI: # TLS SNI(Server Name Indication), Empty for any
+          Path: # HTTP PATH, Empty for any
+          Dest: 80 # Required, Destination of fallback, check https://xtls.github.io/config/fallback/ for details.
+          ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
       CertConfig:
         CertMode: $CertMode # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
         CertDomain: "$your_domain" # Domain to cert
