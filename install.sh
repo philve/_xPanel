@@ -126,7 +126,6 @@ services:
   $custom_name: 
     image: frainzy1477/xray-server:latest
     volumes:
-      - /etc/Xray/:/etc/Xray
       - ./config.yml:/etc/Xray/config.yml
       - ./dns.json:/etc/Xray/dns.json
       - ./rulelist:/etc/Xray/rulelist 
@@ -145,7 +144,7 @@ Log:
 DnsConfigPath: /etc/Xray/dns.json # Path to dns config
 Nodes:
   -
-    PanelType: "SSpanel"
+    PanelType: "Xpanel"
     ApiConfig:
       ApiHost: "$panelurl"
       ApiKey: "$panelkey"
@@ -154,7 +153,7 @@ Nodes:
       Timeout: 30 
       EnableVless: $EnableVless 
       EnableXTLS: $EnableXTLS 
-	  SpeedLimit: 0 # Local settings will replace remote settings, 0 means disable
+      SpeedLimit: 0 # Local settings will replace remote settings, 0 means disable
       DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
       RuleListPath: /etc/Xray/rulelist #Path to local rulelist file
     ControllerConfig:
