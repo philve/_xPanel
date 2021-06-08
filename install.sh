@@ -121,6 +121,7 @@ fi
 firewall_allow
 systemctl daemon-reload
 
+
 cat > /etc/Xray/docker-compose.yml <<-EOF
 version: '3'
 services: 
@@ -145,23 +146,19 @@ Log:
 DnsConfigPath: /etc/Xray/dns.json # Path to dns config
 Nodes:
   -
-    PanelType: "Xpanel"
     ApiConfig:
       ApiHost: "$panelurl"
       ApiKey: "$panelkey"
       NodeID: $node_id
-      NodeType: $node_type 
       Timeout: 30 
-      EnableVless: $EnableVless 
-      EnableXTLS: $EnableXTLS 
-      SpeedLimit: 0 # Local settings will replace remote settings, 0 means disable
-      DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
-      RuleListPath: /etc/Xray/rulelist #Path to local rulelist file
+      SpeedLimit: 0 
+      DeviceLimit: 0 
+      RuleListPath: /etc/Xray/rulelist 
     ControllerConfig:
-      ListenIP: 0.0.0.0 # IP address you want to listen
-      SendIP: 0.0.0.0 # IP address you want to send pacakage
-      UpdatePeriodic: 60 # Time to update the nodeinfo, how many sec.
-      EnableDNS: $EnableDNS # Use custom DNS config, Please ensure that you set the dns.json well
+      ListenIP: 0.0.0.0 
+      SendIP: 0.0.0.0 
+      UpdatePeriodic: 60 
+      EnableDNS: $EnableDNS
       DNSType: AsIs # AsIs, UseIP, UseIPv4, UseIPv6, DNS strategy
       EnableProxyProtocol: false # Only works for WebSocket and TCP
       EnableFallback: false # Only support for Trojan and Vless
@@ -172,7 +169,7 @@ Nodes:
           Dest: 80 # Required, Destination of fallback, check https://xtls.github.io/config/fallback/ for details.
           ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
       CertConfig:
-        CertMode: $CertMode # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
+        CertMode: file # file, dns, http, none
         CertDomain: "$your_domain" # Domain to cert
         CertFile: /etc/Xray/$your_domain.crt
         KeyFile: /etc/Xray/$your_domain.key
@@ -218,7 +215,6 @@ function install_docker_compose(){
 function firewall_allow(){
 	systemctl stop firewalld
 	systemctl mask firewalld
-	systemctl daemon-reload
 }
 
 
@@ -240,17 +236,6 @@ pre_install(){
     echo "---------------------------"
     echo
  
-    echo -e "${green}Node Type / 节点类型${plain}"
-    read -p "(Default Shadowsocks【Shadowsocks, V2ray, Trojan】):" node_type
-    if [ -z "$node_type" ];then
-	node_type="Shadowsocks"
-    fi
-    echo
-    echo "---------------------------"
-    echo "Node Type = $node_type"
-    echo "---------------------------"
-    echo
-
 	
     echo -e "${green}log Level / 日志级别${plain}"
     read -p "(Default none【none, error, warning, info, debug】):" log_level
@@ -263,77 +248,18 @@ pre_install(){
     echo "---------------------------"
     echo
 
-    if [ $node_type == "V2ray" ];then
-    echo -e "${green}Enable Vless / 启用Vless${plain}"
-    read -p "(Default false【false, true】):" EnableVless
-    if [ -z "$EnableVless" ];then
-	EnableVless="false"
-    fi
-    echo
-    echo "---------------------------"
-    echo "Enable Vless = $EnableVless"
-    echo "---------------------------"
-    echo
-    else
-    EnableVless="false"
-    fi
-	
-    if [ $node_type == "V2ray" ] || [ $node_type == "Trojan" ];then
-    echo -e "${green}Enable XTLS / 启用XTLS${plain}"
-    read -p "(Default false【false, true】):" EnableXTLS
-    if [ -z "$EnableXTLS" ];then
-	EnableXTLS="false"
-    fi
-    echo
-    echo "---------------------------"
-    echo "Enable XTLS = $EnableXTLS"
-    echo "---------------------------"
-    echo
-    else
-    EnableXTLS="false"
-    fi
-
     echo -e "${green}Enable DNS/ 启用DNS${plain}"
-    read -p "(Default false【false, true】):" EnableDNS
+    read -p "(Default true【false, true】):" EnableDNS
     if [ -z "$EnableDNS" ];then
-	EnableDNS="false"
+	EnableDNS="true"
     fi
     echo
     echo "---------------------------"
     echo "Enable DNS = $EnableDNS"
     echo "---------------------------"
     echo
+	
 
-    echo -e "${green}Cert Mode / 证书模式${plain}"
-    read -p "(Default file【none, file, http, dns】):" CertMode
-    if [ -z "$CertMode" ];then
-	CertMode="file"
-    fi
-    echo
-    echo "---------------------------"
-    echo "Cert Mode = $CertMode"
-    echo "---------------------------"
-    echo
-	
-    if [ $CertMode == "dns" ] || [ $CertMode == "http" ];then
-    echo -e "${green}Cloudflare Email /Cloudflare邮件${plain}"
-    read -p "(Default : No default value):" CLOUDFLARE_EMAIL
-    echo
-    echo "---------------------------"
-    echo "Cloudflare Email = $CLOUDFLARE_EMAIL"
-    echo "---------------------------"
-    echo 
-
-    echo -e "${green}Cloudflare API KEY / Cloudflare API密钥${plain}"
-    read -p "(Default : No default value):" CLOUDFLARE_API_KEY
-    echo
-    echo "---------------------------"
-    echo "Cloudflare API KEY = $CLOUDFLARE_API_KEY"
-    echo "---------------------------"
-    echo 
-	
-    fi
-	
     echo -e "${green}PanelUrl / 网站地址${plain}"
     read -p "(Default : No default value):" panelurl
     echo
