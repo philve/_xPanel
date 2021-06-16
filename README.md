@@ -14,6 +14,7 @@
 - [TelegramBot](https://telegram.org/)
 - [Mailgun](https://www.mailgun.com/)
 - [Twilio-Sendgrid](https://sendgrid.com/)
+- [Hcaptcha](https://dashboard.hcaptcha.com/overview)
 
 
 ## 安装面板 PANEL INSTALL NGINX
