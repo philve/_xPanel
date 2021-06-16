@@ -72,6 +72,7 @@ install_acme() {
 	if [ ! -f /root/.acme/acme.sh ];then
 	   curl https://get.acme.sh | sh
 	fi
+	bash /root/.acme.sh/acme.sh --set-default-ca  --server  letsencrypt
 	bash /root/.acme.sh/acme.sh  --issue -d $your_domain  --standalone --force
 	bash /root/.acme.sh/acme.sh  --installcert -d $your_domain --fullchainpath /etc/Xray/$your_domain.crt --keypath /etc/Xray/$your_domain.key	
 }
