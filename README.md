@@ -93,3 +93,5 @@ wget https://raw.githubusercontent.com/frainzy1477/_xPanel/master/backend/instal
 chmod +x  install.sh && \
 bash install.sh
 ```
+#Credits
+- [XrayR-project](https://github.com/XrayR-project/XrayR) 后端
