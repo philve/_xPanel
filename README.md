@@ -2,8 +2,8 @@
 ![](https://raw.githubusercontent.com/frainzy1477/_xPanel/master/xpanel.png)
 
 
+## 安装面板 PANEL INSTALL NGINX
 
-安装面板 PANEL INSTALL NGINX
 ```
 系统CentOS 7x64
 安装Ngnix Server
@@ -19,6 +19,10 @@ chmod -R 777 *
 
 xpanel的配置上来
 config/config.php
+
+php composer.phar install
+
+cp smarty_internal_resource_file.php /home/xxxx/xxx/vendor/smarty/smarty/libs/sysplugins
 
 创建管理员
 php cronjob createAdmin
@@ -44,10 +48,29 @@ crontab -e ，添加以下六段
 0 */1 * * * php /home/xxxx/xxxx/cronjob rate
 */1 * * * * php /home/xxxx/xxxx/cronjob checkjob
 59 23 * * * php /home/xxxx/xxxx/cronjob dailyjob
+
+
+登录
+用户：admin
+密码: admin
 ```
 
+## 特征
+```
+- [Google Analytic](https://analytics.google.com/analytics/web/) 
+- [Google Console](https://console.developers.google.com/) 
+- [Twilio](https://www.twilio.com/console/project/api-keys) 
+- [AmazonSNS](https://aws.amazon.com/sns/)
+- [Alphadvantage (Exchange rate key)](https://www.alphavantage.co/support/#api-key)
+- [Paypal](https://developer.paypal.com/classic-home) 
+- [Tawk](https://www.tawk.to/)
+- [TelegramBot](https://telegram.org/)
+- [Mailgun](https://www.mailgun.com/)
+- [Twilio-Sendgrid](https://sendgrid.com/)
 
-安装后端 DOCKER BACKEND INSTALL
+```
+
+## 安装后端 DOCKER BACKEND INSTALL
 
 ```
 CENTOS 7

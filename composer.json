@@ -10,8 +10,10 @@
         "gregwar/captcha": "1.*",
         "voku/anti-xss": "^1.2",
         "telegram-bot/api": "^2.2",
-        "illuminate/pagination": "5.2.*",
-        "illuminate/database": "5.2.*",
+        "illuminate/pagination": "6.20.26",
+		"illuminate/contracts": "6.0.*",
+		"illuminate/support": "6.0.*",
+        "illuminate/database": "6.20.26",
         "sendgrid/sendgrid": "~7",
         "esdeathlove/datatables": "^1.6",
         "ramsey/uuid": "*",
@@ -27,8 +29,7 @@
 		"plisio/plisio-api-php": "^1.0",
 		"stripe/stripe-php": "7.0.0",
         "aws/aws-sdk-php":"*",
-		"thiagoalessio/tesseract_ocr":"2.11.2",
-        "irazasyed/telegram-bot-sdk": "^2.0"
+        "irazasyed/telegram-bot-sdk": "*"
     },
     "autoload": {
         "psr-4": {
