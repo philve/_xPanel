@@ -259,7 +259,17 @@ pre_install(){
     echo "---------------------------"
     echo
 	
-
+    echo -e "${green}Cert Mode / 证书模式${plain}"
+    read -p "(Default file【none, file】):" CertMode
+    if [ -z "$CertMode" ];then
+	CertMode="file"
+    fi
+    echo
+    echo "---------------------------"
+    echo "Cert Mode = $CertMode"
+    echo "---------------------------"
+    echo
+    
     echo -e "${green}PanelUrl / 网站地址${plain}"
     read -p "(Default : No default value):" panelurl
     echo
