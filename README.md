@@ -5,10 +5,12 @@
 ## 安装面板 PANEL INSTALL NGINX
 
 ```
+安装Ioncube Loader 
+https://www.howtoforge.com/tutorial/how-to-install-ioncube-loader/#-configure-ioncube-loader-on-centos
+
 系统CentOS 7x64
 安装Ngnix Server
 安装PHP 7.3+
-安装Ioncube Loader * [Ioncube Loader](https://www.howtoforge.com/tutorial/how-to-install-ioncube-loader/#-configure-ioncube-loader-on-centos)
 安装Database(mysql or mariab)
 安装Cron
 	
