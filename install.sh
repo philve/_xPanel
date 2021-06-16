@@ -174,7 +174,7 @@ Nodes:
         CertFile: /etc/Xray/$your_domain.crt
         KeyFile: /etc/Xray/$your_domain.key
         Provider: cloudflare #Get the full DNS cert provider support list here: https://go-acme.github.io/lego/dns/
-        Email: $CLOUDFLARE_EMAIL
+        Email: $Cert_EMAIL
         DNSEnv: # DNS ENV option used by DNS provider
           CLOUDFLARE_EMAIL: $CLOUDFLARE_EMAIL
           CLOUDFLARE_API_KEY: $CLOUDFLARE_API_KEY
@@ -260,7 +260,7 @@ pre_install(){
     echo
 	
     echo -e "${green}Cert Mode / 证书模式${plain}"
-    read -p "(Default file【none, file】):" CertMode
+    read -p "(Default file【none, file, http, dns】):" CertMode
     if [ -z "$CertMode" ];then
 	CertMode="file"
     fi
@@ -269,6 +269,32 @@ pre_install(){
     echo "Cert Mode = $CertMode"
     echo "---------------------------"
     echo
+    
+    echo -e "${green}Cert Email /证书邮件${plain}"
+    read -p "(Default : No default value):" Cert_EMAIL
+    echo
+    echo "---------------------------"
+    echo "Cert Email = $Cert_EMAIL"
+    echo "---------------------------"
+    echo 
+    
+    if [ $CertMode == "dns" ];then
+    echo -e "${green}Cloudflare Email /Cloudflare邮件${plain}"
+    read -p "(Default : No default value):" CLOUDFLARE_EMAIL
+    echo
+    echo "---------------------------"
+    echo "Cloudflare Email = $CLOUDFLARE_EMAIL"
+    echo "---------------------------"
+    echo 
+
+    echo -e "${green}Cloudflare API KEY / Cloudflare API密钥${plain}"
+    read -p "(Default : No default value):" CLOUDFLARE_API_KEY
+    echo
+    echo "---------------------------"
+    echo "Cloudflare API KEY = $CLOUDFLARE_API_KEY"
+    echo "---------------------------"
+    echo 
+    fi
     
     echo -e "${green}PanelUrl / 网站地址${plain}"
     read -p "(Default : No default value):" panelurl
