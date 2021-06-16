@@ -2,12 +2,24 @@
 ![](https://raw.githubusercontent.com/frainzy1477/_xPanel/master/xpanel.png)
 
 
+## 特征
+- [安装Ioncube Loader](https://www.howtoforge.com/tutorial/how-to-install-ioncube-loader/#-configure-ioncube-loader-on-centos)
+- [Google Analytic](https://analytics.google.com/analytics/web/) 
+- [Google Console](https://console.developers.google.com/) 
+- [Twilio](https://www.twilio.com/console/project/api-keys) 
+- [AmazonSNS](https://aws.amazon.com/sns/)
+- [Alphadvantage (Exchange rate key)](https://www.alphavantage.co/support/#api-key)
+- [Paypal](https://developer.paypal.com/classic-home) 
+- [Tawk](https://www.tawk.to/)
+- [TelegramBot](https://telegram.org/)
+- [Mailgun](https://www.mailgun.com/)
+- [Twilio-Sendgrid](https://sendgrid.com/)
+
+
 ## 安装面板 PANEL INSTALL NGINX
 
 ```
 安装Ioncube Loader 
-https://www.howtoforge.com/tutorial/how-to-install-ioncube-loader/#-configure-ioncube-loader-on-centos
-
 系统CentOS 7x64
 安装Ngnix Server
 安装PHP 7.3+
@@ -55,21 +67,6 @@ crontab -e ，添加以下六段
 登录
 用户：admin
 密码: admin
-```
-
-## 特征
-```
-- [Google Analytic](https://analytics.google.com/analytics/web/) 
-- [Google Console](https://console.developers.google.com/) 
-- [Twilio](https://www.twilio.com/console/project/api-keys) 
-- [AmazonSNS](https://aws.amazon.com/sns/)
-- [Alphadvantage (Exchange rate key)](https://www.alphavantage.co/support/#api-key)
-- [Paypal](https://developer.paypal.com/classic-home) 
-- [Tawk](https://www.tawk.to/)
-- [TelegramBot](https://telegram.org/)
-- [Mailgun](https://www.mailgun.com/)
-- [Twilio-Sendgrid](https://sendgrid.com/)
-
 ```
 
 ## 安装后端 DOCKER BACKEND INSTALL
