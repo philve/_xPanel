@@ -42,6 +42,9 @@ cp smarty_internal_resource_file.php /home/xxxx/xxx/vendor/smarty/smarty/libs/sy
 创建管理员
 php cronjob createAdmin
 
+下线应用
+php cronjob downloadApps
+
 打开nginx Config
 
 同时，root那一行改为
