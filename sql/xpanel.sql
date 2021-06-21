@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 16, 2021 at 11:07 PM
+-- Generation Time: Jun 21, 2021 at 05:54 PM
 -- Server version: 5.5.68-MariaDB
 -- PHP Version: 7.4.18
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kk`
+-- Database: `xpanel`
 --
 
 -- --------------------------------------------------------
@@ -69,17 +69,17 @@ INSERT INTO `config` (`name`, `value`) VALUES
 ('accessdenied', '0'),
 ('add_emoji_to_server_name', '1'),
 ('admin_telegram', ''),
-('alipay_url', 'https://qr.alipay.com/16758r6cw5q'),
-('allowaccess', '1'),
+('alipay_url', NULL),
+('allowaccess', '0'),
 ('alphavantage_apikey', ''),
-('api_key', 'rlVxVwIvilbVBQ6UVvZ2'),
+('api_key', 'aQ2GRwXWKMJx20o0BsAf'),
 ('appName', 'xPanel'),
 ('aws_key', ''),
 ('aws_region', ''),
 ('aws_secret', ''),
 ('backup_email', ''),
-('backup_password', ''),
-('baseUrl', 'https://xpanel.xx.com'),
+('backup_password', NULL),
+('baseUrl', 'https://xpanel.gbxcloud.com'),
 ('buy_reset', '1'),
 ('client_id', ''),
 ('coinpayments_Private_Key', ''),
@@ -102,7 +102,7 @@ INSERT INTO `config` (`name`, `value`) VALUES
 ('enable_reg', '1'),
 ('enable_tawkchat', '0'),
 ('enable_telegram', '0'),
-('enable_wechat', '0'),
+('enable_wechat', '1'),
 ('exp_reset', '1'),
 ('ga_id', ''),
 ('h_captcha', '0'),
@@ -110,9 +110,9 @@ INSERT INTO `config` (`name`, `value`) VALUES
 ('h_captcha_secrete', ''),
 ('ios_account', ''),
 ('ios_passwd', ''),
-('jkstate', '1'),
-('lastheart', ''),
-('lastpay', ''),
+('jkstate', NULL),
+('lastheart', NULL),
+('lastpay', NULL),
 ('loginverify', '0'),
 ('logo_path', '/app/app-assets/images/img/X.png'),
 ('mailDriver', '0'),
@@ -137,7 +137,7 @@ INSERT INTO `config` (`name`, `value`) VALUES
 ('reg_traffic', '1'),
 ('reg_traffic_exp', '1'),
 ('rememberMeDuration', '7'),
-('restrictions', 'Australia,China,Germany,France,United Kingdom,Hong Kong,Japan,South Korea,Russia,Singapore,Taiwan,United States'),
+('restrictions', 'Australia,Germany,France,United Kingdom,Japan,South Korea,Russia,Singapore,Taiwan,United States'),
 ('restrict_email', '0'),
 ('restrict_email_list', '@gmail.com,@protonmail.com,@ymail.com,@hotmail.co.uk,@hotmail.com,@qq.com,@outlook.com,@163.com,@126.com,@live.com,@msn.com,@yeah.net,@foxmail.com'),
 ('salt', 'GBX2day1'),
@@ -153,22 +153,21 @@ INSERT INTO `config` (`name`, `value`) VALUES
 ('smtp_sender', ''),
 ('smtp_ssl', '1'),
 ('smtp_username', ''),
-('subUrl', ''),
+('subUrl', 'https://xpanel.gbxcloud.com/subscribe/'),
 ('tawkchat_api', ''),
 ('tawkchat_id', ''),
 ('telegram_backup', '0'),
 ('telegram_bot', ''),
 ('telegram_chatid', ''),
 ('telegram_gid', ''),
-('telegram_group_link', ''),
-('telegram_group_quiet', '1'),
+('telegram_group_link', NULL),
 ('telegram_request_token', 'sjhueAMAndnenw2k2k1mmsJSJWMWiwiwthgfhgfhx'),
 ('telegram_token', ''),
 ('tracking_id', ''),
 ('twillo_account_sid', ''),
 ('twillo_auth_token', ''),
 ('twillo_number', ''),
-('wechat_url', 'wxp://nffgiB45kvQv6P446');
+('wechat_url', NULL);
 
 -- --------------------------------------------------------
 
@@ -928,20 +927,6 @@ CREATE TABLE `rule_list` (
   `type` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `rule_list`
---
-
-INSERT INTO `rule_list` (`id`, `name`, `regex`, `type`) VALUES
-(1, '360-1', '(.*\\.||)(360|360safe|so|360totalsecurity|qihoo|qhimg)\\.(cn|com)', 1),
-(2, 'Spam-1', '(^.*@)(guerrillamail|guerrillamailblock|sharklasers|grr|pokemail|spam4|bccto|chacuo|027168).(info|biz|com|de|net|org|me|la)', 1),
-(3, 'Spam-2', '(Subject|HELO|SMTP)', 1),
-(4, 'Thunder', '(.?)(xunlei|sandai|Thunder|XLLiveUD)(.)', 1),
-(5, 'BitTorrent', 'BitTorrent protocol', 1),
-(6, 'BT', '(torrent|.torrent|peer_id=|info_hash|get_peers|find_node|BitTorrent|announce_peer|announce.php?passkey=)', 1),
-(7, '360-2', '(.+.|^)(360|so).(cn|com)', 1),
-(8, 'Baidu-Nav', '(api|ps|sv|offnavi|newvector|ulog.imap|newloc)(.map|).(baidu|n.shifen).com', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -1113,7 +1098,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `user_name`, `email`, `pass`, `passwd`, `uuid`, `mobile`, `t`, `u`, `d`, `transfer_enable`, `forbidden_ip`, `forbidden_port`, `enable`, `reg_date`, `money`, `expire_time`, `reg_ip`, `node_speedlimit`, `node_connector`, `is_admin`, `last_day_t`, `class`, `expire_in`, `remark`, `node_group`, `reset_day`, `reset_bandwidth`, `telegram_id`, `telegram_name`, `expire_notified`, `traffic_notified`, `afflink`, `notification`, `ref_by`) VALUES
-(1, 'admin', 'admin', 'a1b1f2b802057facb33ec4fa562bd41a8a7d59aa496513568d56dd77b2fb8084', '6llHsp', '4c297dd4-550f-31f8-aa48-7fa3644e6a46', '', 1623855770, 869681, 348492241, 536870912000, '', NULL, 1, '2021-06-16 06:11:01', '170.00', 0, '127.0.0.1', 200, 5, 1, 0, 1, '2021-07-16 20:53:54', '', 1, 0, '0.00', NULL, NULL, 0, 0, 'kXTvuDqigM', 1, 1);
+(1, 'admin', 'admin', 'a1b1f2b802057facb33ec4fa562bd41a8a7d59aa496513568d56dd77b2fb8084', 'z1YzAZ', '03ff8c7c-fa38-33e7-bdc7-bc5a4fdfe83a', '', 1624114554, 634393, 15917569, 536870912000, '', NULL, 1, '2021-06-18 17:38:29', '90.00', 0, '127.0.0.1', 200, 5, 1, 0, 1, '2021-07-19 04:26:18', '', 1, 0, '0.00', 240061389, 'gatlxsupport', 0, 0, 'AGxG3FdSkn', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1430,7 +1415,7 @@ ALTER TABLE `pay_qrcode`
 -- AUTO_INCREMENT for table `rule_list`
 --
 ALTER TABLE `rule_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rule_log`

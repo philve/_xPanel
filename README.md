@@ -32,7 +32,7 @@
 git clone https://github.com/frainzy1477/_xPanel.git tmp -b master && mv tmp/.git . && rm -rf tmp && git reset --hard
 chmod -R 777 *
 
-xpanel的配置上来
+xpanel的配置
 config/config.php
 
 php composer.phar install
@@ -47,7 +47,7 @@ php cronjob downloadApps
 
 打开nginx Config
 
-同时，root那一行改为
+root那一行改为
 root /home/xxxx/xxx/public;
 
 然后添加下面这一段到 server
@@ -57,11 +57,12 @@ location / {
 
 重启一下 nginx
 service nginx restart
+
 systemctl restart nginx 
 
 导入 sql 目录下的 sql/xpanel.sql
 
-crontab -e ，添加以下六段
+crontab -e ，添加以下四段
 0 */1 * * * php /home/xxxx/xxxx/cronjob backup
 0 */1 * * * php /home/xxxx/xxxx/cronjob rate
 */1 * * * * php /home/xxxx/xxxx/cronjob checkjob
