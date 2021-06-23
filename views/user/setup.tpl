@@ -6,14 +6,9 @@
 												</div>      
                                                 <div class="modal-body">
                                                     <center>
-														<video controls class="pull-center" width="700" height="450">
-																<source src="/app/app-assets/video/and.mp4" type="video/mp4">
-																<source src="/app/app-assets/video/and.webm" type="video/webm">
-																<source src="/app/app-assets/video/and.ogv" type="video/ogg" codecs="theora, vorbis">
-																<div style="border: 1px solid black ; padding: 8px ;">
-																	Sorry, your browser does not support the tag used by &lt;video&gt;.
-																</div>
-														</video>																				
+														
+
+														
 													</center>
 												</div>
                                             </div>
@@ -30,14 +25,9 @@
 												</div>   
                                                 <div class="modal-body">
 													<center>
-														<video controls class="pull-center" width="700" height="450">
-																<source src="/app/app-assets/video/win.mp4" type="video/mp4">
-																<source src="/app/app-assets/video/win.webm" type="video/webm">
-																<source src="/app/app-assets/video/win.ogv" type="video/ogg" codecs="theora, vorbis">
-																<div style="border: 1px solid black ; padding: 8px ;">
-																	Sorry, your browser does not support the tag used by &lt;video&gt;.
-																</div>
-														</video>																				
+														
+
+														
 													</center>
 												</div>
                                             </div>
@@ -68,16 +58,11 @@
 														</div>
 													</div>
 													</br>
-													
 													<center>
-														<video controls class="pull-center" width="700" height="450">
-																<source src="/app/app-assets/video/ios.mp4" type="video/mp4">
-																<source src="/app/app-assets/video/ios.webm" type="video/webm">
-																<source src="/app/app-assets/video/ios.ogv" type="video/ogg" codecs="theora, vorbis">
-																<div style="border: 1px solid black ; padding: 8px ;">
-																	Sorry, your browser does not support the tag used by &lt;video&gt;.
-																</div>
-														</video>																				
+														
+
+
+														
 													</center>
 													<br><br>
 												</div>
@@ -97,14 +82,10 @@
 												           
                                                 <div class="modal-body">
 													<center>
-														<video controls class="pull-center" width="700" height="450">
-																<source src="/app/app-assets/video/mac.mp4" type="video/mp4">
-																<source src="/app/app-assets/video/mac.webm" type="video/webm">
-																<source src="/app/app-assets/video/mac.ogv" type="video/ogg" codecs="theora, vorbis">
-																<div style="border: 1px solid black ; padding: 8px ;">
-																	Sorry, your browser does not support the tag used by &lt;video&gt;.
-																</div>
-														</video>																				
+													
+
+
+													
 													</center>
 												</div>
                                             </div>
@@ -123,14 +104,10 @@
 												</div>    
                                                 <div class="modal-body">
 													<center>
-														<video controls class="pull-center" width="700" height="450">
-																<source src="/app/app-assets/video/linux.mp4" type="video/mp4">
-																<source src="/app/app-assets/video/linux.webm" type="video/webm">
-																<source src="/app/app-assets/video/linux.ogv" type="video/ogg" codecs="theora, vorbis">
-																<div style="border: 1px solid black ; padding: 8px ;">
-																	Sorry, your browser does not support the tag used by &lt;video&gt;.
-																</div>
-														</video>																				
+													
+
+
+													
 													</center>
 												</div>
                                             </div>

@@ -30,7 +30,7 @@
 	
 下载程序代码
 git clone https://github.com/frainzy1477/_xPanel.git tmp -b master && mv tmp/.git . && rm -rf tmp && git reset --hard
-chmod -R 777 *
+
 
 xpanel的配置
 config/config.php
@@ -41,6 +41,8 @@ config/config.php
 php composer.phar install
 
 cp smarty_internal_resource_file.php /home/xxxx/xxx/vendor/smarty/smarty/libs/sysplugins
+
+chmod -R 777 /home/xxxx/xxx
 
 创建管理员
 php cronjob createAdmin
