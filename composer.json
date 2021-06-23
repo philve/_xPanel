@@ -28,7 +28,9 @@
         "stripe/stripe-php": "7.0.0",
         "aws/aws-sdk-php":"*",
         "irazasyed/telegram-bot-sdk": "^2.0",
-        "longman/telegram-bot": "*"
+        "longman/telegram-bot": "*",
+        "league/omnipay": "^3",
+        "lokielse/omnipay-alipay": "*"
     },
     "require-dev": {
         "php-parallel-lint/php-parallel-lint": "^1.2",

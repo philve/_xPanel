@@ -21,7 +21,7 @@
 
 ```
 安装Ioncube Loader 
-系统CentOS 7x64
+系统CentOS 7x64 / Ubuntu 18.04+
 安装Ngnix Server
 安装PHP 7.3+
 安装Database(mysql or mariab)
@@ -34,6 +34,9 @@ chmod -R 777 *
 
 xpanel的配置
 config/config.php
+
+导入 sql 目录下的 sql/xpanel.sql
+
 
 php composer.phar install
 
@@ -60,7 +63,6 @@ service nginx restart
 
 systemctl restart nginx 
 
-导入 sql 目录下的 sql/xpanel.sql
 
 crontab -e ，添加以下四段
 0 */1 * * * php /home/xxxx/xxxx/cronjob backup
