@@ -153,7 +153,7 @@ INSERT INTO `config` (`name`, `value`) VALUES
 ('smtp_sender', ''),
 ('smtp_ssl', '1'),
 ('smtp_username', ''),
-('subUrl', 'https://xpanel.gbxcloud.com/subscribe/'),
+('subUrl', NULL),
 ('tawkchat_api', ''),
 ('tawkchat_id', ''),
 ('telegram_backup', '0'),
@@ -1098,7 +1098,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `user_name`, `email`, `pass`, `passwd`, `uuid`, `mobile`, `t`, `u`, `d`, `transfer_enable`, `forbidden_ip`, `forbidden_port`, `enable`, `reg_date`, `money`, `expire_time`, `reg_ip`, `node_speedlimit`, `node_connector`, `is_admin`, `last_day_t`, `class`, `expire_in`, `remark`, `node_group`, `reset_day`, `reset_bandwidth`, `telegram_id`, `telegram_name`, `expire_notified`, `traffic_notified`, `afflink`, `notification`, `ref_by`) VALUES
-(1, 'admin', 'admin', 'a1b1f2b802057facb33ec4fa562bd41a8a7d59aa496513568d56dd77b2fb8084', 'z1YzAZ', '03ff8c7c-fa38-33e7-bdc7-bc5a4fdfe83a', '', 1624114554, 634393, 15917569, 536870912000, '', NULL, 1, '2021-06-18 17:38:29', '90.00', 0, '127.0.0.1', 200, 5, 1, 0, 1, '2021-07-19 04:26:18', '', 1, 0, '0.00', 240061389, 'gatlxsupport', 0, 0, 'AGxG3FdSkn', 0, 0);
+(1, 'admin', 'admin', 'a1b1f2b802057facb33ec4fa562bd41a8a7d59aa496513568d56dd77b2fb8084', 'z1YzAZ', '03ff8c7c-fa38-33e7-bdc7-bc5a4fdfe83a', '', 1624114554, 634393, 15917569, 536870912000, '', NULL, 1, '2021-06-18 17:38:29', '90.00', 0, '127.0.0.1', 200, 5, 1, 0, 1, '2021-07-19 04:26:18', '', 1, 0, '0.00', 240061389, '', 0, 0, 'AGxG3FdSkn', 0, 0);
 
 -- --------------------------------------------------------
 
