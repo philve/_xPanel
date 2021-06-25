@@ -72,10 +72,6 @@ crontab -e ，添加以下四段
 */1 * * * * php /home/xxxx/xxxx/cronjob checkjob
 59 23 * * * php /home/xxxx/xxxx/cronjob dailyjob
 
-
-登录
-用户：admin
-密码: admin
 ```
 
 ## 安装后端 DOCKER BACKEND INSTALL
