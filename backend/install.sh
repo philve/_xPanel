@@ -223,11 +223,10 @@ docker logs -f ${custom_name}
 echo -e ""
 echo "Docker Info: "
 echo "------------------------------------------------------------------------------"
-echo "docker restart ${custom_name}	- Restart/重启 Xray"
-echo "docker stop ${custom_name}	- Stop/停止 Xray"
-echo "docker start ${custom_name}	- Start/启动 Xray"
-echo "docker rm -f ${custom_name}	- Remove/取消 Xray"
-echo "docker logs -f ${custom_name}	- Xray logs/查看日志"
+echo "cd /etc/Xray"
+echo "docker-compose down   - Stop/停止 Xray"
+echo "docker-compose up -d   - Start/启动 Xray"
+echo "docker-compose pull   - Update/更新 Xray"
 echo "------------------------------------------------------------------------------"
 }
 
