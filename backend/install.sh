@@ -112,11 +112,11 @@ if [ ! -d /etc/Xray ];then
 fi
 if [ $CertMode == "file" ];then	
 	install_acme
-	$Certkeypath =/etc/Xray/$your_domain.key
-	$Certpath 	 =/etc/Xray/$your_domain.crt
+	$Certkeypath ='/etc/Xray/$your_domain.key'
+	$Certpath    ='/etc/Xray/$your_domain.crt'
 else	
-	$Certkeypath = ./cert/$your_domain.key
-	$Certpath 	 = ./cert/$your_domain.crt	
+	$Certkeypath = './cert/'$your_domain.key
+	$Certpath    = './cert/'$your_domain.crt	
 fi
 if [ -z "$(which docker)" ];then
 	install_docker
@@ -218,14 +218,12 @@ cd /etc/Xray
 
 docker-compose up -d
 
-docker logs -f ${custom_name}
-
 echo -e ""
 echo "Docker Info: "
 echo "------------------------------------------------------------------------------"
 echo "cd /etc/Xray"
 echo "docker-compose down   - Stop/停止 Xray"
-echo "docker-compose up -d   - Start/启动 Xray"
+echo "docker-compose up -d  - Start/启动 Xray"
 echo "docker-compose pull   - Update/更新 Xray"
 echo "------------------------------------------------------------------------------"
 }
@@ -294,7 +292,7 @@ pre_install(){
     echo
 	
     echo -e "${green}Cert Mode / 证书模式${plain}"
-    read -p "(Default file【none, file, http, dns】):" CertMode
+    read -p "(Default http【none, file, http, dns】):" CertMode
     if [ -z "$CertMode" ];then
 	CertMode="http"
     fi
