@@ -116,7 +116,7 @@ fi
 if [ -z "$(which docker)" ];then
 	install_docker
 fi
-if [ -z "$(which docker_compose)" ];then
+if [ ! -f "/usr/bin/docker-compose" ];then
 	install_docker_compose
 fi
 
