@@ -112,8 +112,8 @@ if [ ! -d /etc/Xray ];then
 fi
 if [ $CertMode == "file" ];then	
 	install_acme
-	$Certkeypath ='/etc/Xray/$your_domain.key'
-	$Certpath    ='/etc/Xray/$your_domain.crt'
+	$Certkeypath ='/etc/Xray/'$your_domain.key
+	$Certpath    ='/etc/Xray/'$your_domain.crt
 else	
 	$Certkeypath = './cert/'$your_domain.key
 	$Certpath    = './cert/'$your_domain.crt	
