@@ -278,6 +278,7 @@ echo "--------------------------------------------------------------------------
 
 function install_docker(){
 	curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+	chkconfig docker on
 	systemctl start docker
 	systemctl enable docker
 	usermod -aG docker $USER
