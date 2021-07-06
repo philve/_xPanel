@@ -111,17 +111,12 @@ if [ ! -d /etc/Xray ];then
 	fi
 fi
 if [ $CertMode == "file" ];then	
-	install_acme
-	$Certkeypath ='/etc/Xray/$your_domain.key'
-	$Certpath    ='/etc/Xray/$your_domain.crt'
-else	
-	$Certkeypath = './cert/'$your_domain.key
-	$Certpath    = './cert/'$your_domain.crt	
+	install_acme	
 fi
 if [ -z "$(which docker)" ];then
 	install_docker
 fi
-if [ -z "$(which docker_compose)" ];then
+if [ ! -f "/usr/bin/docker-compose" ];then
 	install_docker_compose
 fi
 
@@ -146,6 +141,57 @@ services:
     network_mode: host
 EOF
 
+
+
+cat > /etc/Xray/config.yml <<-EOF
+Log:
+  Level: $log_level 
+  AccessPath: #/etc/Xray/access.Log
+  ErrorPath: #/etc/Xray/error.log
+DnsConfigPath: /etc/Xray/dns.json # Path to dns config
+ConnetionConfig:
+  Handshake: 4 # Handshake time limit, Second
+  ConnIdle: 10 # Connection idle time limit, Second
+  UplinkOnly: 2 # Time limit when the connection downstream is closed, Second
+  DownlinkOnly: 5 # Time limit when the connection is closed after the uplink is closed, Second
+  BufferSize: 512 # The internal cache size of each connection, kB 
+Nodes:
+  -
+    ApiConfig:
+      ApiHost: "$panelurl"
+      ApiKey: "$panelkey"
+      NodeID: $node_id
+      Timeout: 30 
+      SpeedLimit: 0 
+      DeviceLimit: 0 
+      RuleListPath: /etc/Xray/rulelist 
+    ControllerConfig:
+      ListenIP: 0.0.0.0 
+      SendIP: 0.0.0.0 
+      UpdatePeriodic: 60 
+      EnableDNS: $EnableDNS
+      DNSType: AsIs # AsIs, UseIP, UseIPv4, UseIPv6, DNS strategy
+      EnableProxyProtocol: false # Only works for WebSocket and TCP
+      EnableFallback: false # Only support for Trojan and Vless
+      FallBackConfigs:  # Support multiple fallbacks
+        -
+          SNI: # TLS SNI(Server Name Indication), Empty for any
+          Path: # HTTP PATH, Empty for any
+          Dest: 80 # Required, Destination of fallback, check https://xtls.github.io/config/fallback/ for details.
+          ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
+      CertConfig:
+        CertMode: $CertMode # file, dns, http, none
+        CertDomain: "$your_domain" # Domain to cert	
+        CertFile: /etc/Xray/$your_domain.crt
+        KeyFile: /etc/Xray/$your_domain.key
+        Provider: cloudflare #Get the full DNS cert provider support list here: https://go-acme.github.io/lego/dns/
+        Email: $Cert_EMAIL
+        DNSEnv: # DNS ENV option used by DNS provider
+          CLOUDFLARE_EMAIL: $CLOUDFLARE_EMAIL
+          CLOUDFLARE_API_KEY: $CLOUDFLARE_API_KEY
+
+EOF
+
 else
 
 cat > /etc/Xray/docker-compose.yml <<-EOF
@@ -161,7 +207,6 @@ services:
     network_mode: host
 EOF
 
-fi
 
 cat > /etc/Xray/config.yml <<-EOF
 Log:
@@ -202,8 +247,8 @@ Nodes:
       CertConfig:
         CertMode: $CertMode # file, dns, http, none
         CertDomain: "$your_domain" # Domain to cert
-        CertFile: $Certpath
-        KeyFile: $Certkeypath
+        CertFile: ./cert/$your_domain.crt
+        KeyFile: ./cert/$your_domain.key
         Provider: cloudflare #Get the full DNS cert provider support list here: https://go-acme.github.io/lego/dns/
         Email: $Cert_EMAIL
         DNSEnv: # DNS ENV option used by DNS provider
@@ -211,6 +256,8 @@ Nodes:
           CLOUDFLARE_API_KEY: $CLOUDFLARE_API_KEY
 
 EOF
+
+fi
 
 sleep 1
 
@@ -231,6 +278,7 @@ echo "--------------------------------------------------------------------------
 
 function install_docker(){
 	curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+	chkconfig docker on
 	systemctl start docker
 	systemctl enable docker
 	usermod -aG docker $USER
