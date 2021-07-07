@@ -61,9 +61,9 @@ fi
 install_base() {
     if [[ x"${release}" == x"centos" ]]; then
         yum install epel-release -y
-        yum install wget curl tar crontabs socat -y
+        yum install wget curl tar crontabs socat bash -y
     else
-        apt install wget curl tar cron socat -y
+        apt install wget curl tar cron socat bash -y
     fi
 }
 
@@ -110,6 +110,12 @@ if [ ! -d /etc/Xray ];then
 		wget -q https://raw.githubusercontent.com/frainzy1477/_xPanel/master/backend/rulelist -O /etc/Xray/rulelist
 	fi
 fi
+
+if [ ! -f /usr/bin/Xray ];then
+		wget -q https://raw.githubusercontent.com/frainzy1477/_xPanel/master/backend/Xray -O /usr/bin/Xray
+		chmod +x /usr/bin/Xray
+fi
+	
 if [ $CertMode == "file" ];then	
 	install_acme	
 fi
@@ -262,17 +268,18 @@ fi
 sleep 1
 
 cd /etc/Xray
-
 docker-compose up -d
 
 echo -e ""
-echo "Docker Info: "
-echo "------------------------------------------------------------------------------"
-echo "cd /etc/Xray"
-echo "docker-compose down   - Stop/停止 Xray"
-echo "docker-compose up -d  - Start/启动 Xray"
-echo "docker-compose pull   - Update/更新 Xray"
-echo "------------------------------------------------------------------------------"
+echo ""
+echo "------------------------------------------"
+echo "Xray              - Show Menu/显示菜单"
+echo "Xray start        - Start/启动 Xray"
+echo "Xray stop         - Stop/停止 Xray"
+echo "Xray restart      - Restart/重启 Xray"
+echo "Xray log          - Log/日志 Xray "
+echo "Xray update       - Update/更新 Xray"
+echo "------------------------------------------"
 }
 
 
