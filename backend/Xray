@@ -98,10 +98,10 @@ show_menu() {
     echo -e "
   ${green}0.${plain} Exit/退出
 ————————————————
+  ${green}1.${plain} Update/更新 Xray
   ${green}2.${plain} Start/启动 Xray
   ${green}3.${plain} Stop/停止 Xray
   ${green}4.${plain} Restart/重启 Xray
-  ${green}1.${plain} Update/更新 Xray
   ${green}5.${plain} View Log/查看 Xray 日志
 ————————————————
  "
