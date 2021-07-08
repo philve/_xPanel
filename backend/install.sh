@@ -203,9 +203,9 @@ Log:
 DnsConfigPath: /etc/Xray/dns.json # Path to dns config
 ConnetionConfig:
   Handshake: 4 # Handshake time limit, Second
-  ConnIdle: 10 # Connection idle time limit, Second
+  ConnIdle: 5 # Connection idle time limit, Second
   UplinkOnly: 2 # Time limit when the connection downstream is closed, Second
-  DownlinkOnly: 5 # Time limit when the connection is closed after the uplink is closed, Second
+  DownlinkOnly: 2 # Time limit when the connection is closed after the uplink is closed, Second
   BufferSize: 512 # The internal cache size of each connection, kB 
 Nodes:
   -
@@ -268,7 +268,7 @@ Log:
 DnsConfigPath: /etc/Xray/dns.json # Path to dns config
 ConnetionConfig:
   Handshake: 4 # Handshake time limit, Second
-  ConnIdle: 10 # Connection idle time limit, Second
+  ConnIdle: 5 # Connection idle time limit, Second
   UplinkOnly: 2 # Time limit when the connection downstream is closed, Second
   DownlinkOnly: 5 # Time limit when the connection is closed after the uplink is closed, Second
   BufferSize: 512 # The internal cache size of each connection, kB 
