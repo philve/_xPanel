@@ -112,8 +112,8 @@ if [ ! -d /etc/Xray ];then
 fi
 
 if [ ! -f /usr/bin/Xray ];then
-		wget -q https://raw.githubusercontent.com/frainzy1477/_xPanel/master/backend/Xray -O /usr/bin/Xray
-		chmod +x /usr/bin/Xray
+	wget -q https://raw.githubusercontent.com/frainzy1477/_xPanel/master/backend/Xray -O /usr/bin/Xray
+	chmod +x /usr/bin/Xray
 fi
 	
 if [ $CertMode == "file" ];then	
@@ -130,6 +130,53 @@ sleep 2
 
 firewall_allow
 systemctl daemon-reload
+
+if [ $caddy == "true" ];then
+	if [ ! -d /etc/caddy ];then
+		mkdir -p /etc/caddy	
+		wget -q https://raw.githubusercontent.com/frainzy1477/_xPanel/master/backend/caddy -O /usr/bin/caddy
+		chmod +x /usr/bin/caddy
+	fi
+fi
+
+if [ $caddy == "true" ] && [ $caddytype == "h2" ];then	
+cat > /etc/caddy/$your_domain.conf <<-EOF
+$your_domain:443 {
+    root /srv/www
+    file_server
+    
+    reverse_proxy $path 127.0.0.1:$port {
+        transport http {
+            versions h2c
+        }
+    }
+    gzip
+	tls $Cert_EMAIL {
+		protocols tls1.2
+	}
+}
+EOF
+
+elif [ $caddy == "true" ] && [ $caddytype == "ws" ];then
+
+cat > /etc/caddy/$your_domain.conf <<-EOF
+$your_domain:443 {
+    root /srv/www
+    file_server
+    
+    proxy $path 127.0.0.1:$port {
+       websocket
+	   header_upstream -Origin
+	   header_upstream X-Forwarded-Proto "https"
+    }
+    gzip
+	tls $Cert_EMAIL {
+		protocols tls1.2
+	}
+}
+EOF
+
+fi
 
 if [ $CertMode == "file" ];then	
 cat > /etc/Xray/docker-compose.yml <<-EOF
@@ -345,6 +392,50 @@ pre_install(){
     echo "Enable DNS = $EnableDNS"
     echo "---------------------------"
     echo
+	
+	echo -e "${green}Enable Caddy/ 启用caddy${plain}"
+    read -p "(Default false【false, true】):" caddy
+    if [ -z "$caddy" ];then
+	caddy="false"
+    fi
+    echo
+    echo "---------------------------"
+    echo "Enable Caddy = $caddy"
+    echo "---------------------------"
+    echo
+	
+	if [ $caddy == "true" ];then
+    echo -e "${green}Caddy Type /Caddy类型${plain}"
+    read -p "(Default ws【ws, h2】):" caddytype
+	if [ -z "$caddytype" ];then
+	caddytype="ws"
+    fi
+    echo
+    echo "---------------------------"
+    echo "Caddy Type = $caddytype"
+    echo "---------------------------"
+    echo 
+	
+	echo -e "${green}Port /连接端口${plain}"
+    read -p "(No Default Value):" port
+    echo
+    echo "---------------------------"
+    echo "Port = $port"
+    echo "---------------------------"
+    echo
+	
+	echo -e "${green}Path /伪装路径${plain}"
+    read -p "(Default '/'):" path
+	if [ -z "$path" ];then
+	path="/"
+    fi
+    echo
+    echo "---------------------------"
+    echo "Path = $path"
+    echo "---------------------------"
+    echo
+	
+	fi
 	
     echo -e "${green}Cert Mode / 证书模式${plain}"
     read -p "(Default http【none, file, http, dns】):" CertMode
