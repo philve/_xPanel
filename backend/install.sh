@@ -299,9 +299,9 @@ function install_docker_compose(){
 
 
 function firewall_allow(){
-	systemctl stop firewalld
-	systemctl mask firewalld
-	systemctl daemon-reload
+	firewall-cmd --permanent --add-port=1-65500/tcp
+	firewall-cmd --permanent --add-port=1-65500/udp
+	firewall-cmd --reload
 }
 
 
