@@ -436,9 +436,9 @@ pre_install(){
 	#fi
 	
     echo -e "${green}Cert Mode / 证书模式${plain}"
-    read -p "(Default http【none, file, http, dns】):" CertMode
+    read -p "(Default file【none, file, http, dns】):" CertMode
     if [ -z "$CertMode" ];then
-	CertMode="http"
+	CertMode="file"
     fi
     echo
     echo "---------------------------"
