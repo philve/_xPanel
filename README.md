@@ -72,6 +72,10 @@ crontab -e ，添加以下四段
 */1 * * * * php /home/xxxx/xxxx/cronjob checkjob
 59 23 * * * php /home/xxxx/xxxx/cronjob dailyjob
 
+
+管理后端,系统设置->通知设置->通知方式->Telegram信息
+php cronjob setTelegram
+
 ```
 
 ## 安装后端 DOCKER BACKEND INSTALL

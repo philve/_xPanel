@@ -167,6 +167,7 @@ INSERT INTO `config` (`name`, `value`) VALUES
 ('twillo_account_sid', ''),
 ('twillo_auth_token', ''),
 ('twillo_number', ''),
+('WebapiSafe', '1'),
 ('wechat_url', NULL);
 
 -- --------------------------------------------------------
