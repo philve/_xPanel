@@ -2,8 +2,8 @@
 ![](https://raw.githubusercontent.com/frainzy1477/_xPanel/master/xpanel.png)
 
 
-## 特征
-- [安装Ioncube Loader](https://www.howtoforge.com/tutorial/how-to-install-ioncube-loader/#-configure-ioncube-loader-on-centos)
+## Feature
+- [Install Ioncube Loader](https://www.howtoforge.com/tutorial/how-to-install-ioncube-loader/#-configure-ioncube-loader-on-centos)
 - [Google Analytic](https://analytics.google.com/analytics/web/) 
 - [Google Console](https://console.developers.google.com/) 
 - [Twilio](https://www.twilio.com/console/project/api-keys) 
@@ -17,25 +17,24 @@
 - [Hcaptcha](https://dashboard.hcaptcha.com/overview)
 
 
-## 安装面板 PANEL INSTALL NGINX
+## PANEL INSTALL NGINX
 
 ```
-安装Ioncube Loader 
-系统CentOS 7x64 / Ubuntu 18.04+
-安装Ngnix Server
-安装PHP 7.3+
-安装Database(mysql or mariab)
-安装Cron
+Install Ioncube Loader 
+Install CentOS 7x64 / Ubuntu 18.04+
+Install Ngnix Server
+Install PHP 7.3+
+Install Database(mysql or mariab)
+Install Cron
 	
 	
-下载程序代码
-git clone https://github.com/frainzy1477/_xPanel.git tmp -b master && mv tmp/.git . && rm -rf tmp && git reset --hard
+Download program code:
+git clone https://github.com/philve/_xPanel.git tmp -b master && mv tmp/.git . && rm -rf tmp && git reset --hard
 
-
-xpanel的配置
+xpanel Configuration:
 config/config.php
 
-导入 sql 目录下的 sql/xpanel.sql
+Import sql/xpanel.sql in the sql directory:
 
 
 php composer.phar install
@@ -44,41 +43,41 @@ cp smarty_internal_resource_file.php /home/xxxx/xxx/vendor/smarty/smarty/libs/sy
 
 chmod -R 777 /home/xxxx/xxx
 
-创建管理员
+Create an administrator:
 php cronjob createAdmin
 
-下线应用
+Offline application:
 php cronjob downloadApps
 
-打开nginx Config
+Open nginx Config:
 
-root那一行改为
+Change the root line to:
 root /home/xxxx/xxx/public;
 
-然后添加下面这一段到 server
+Then add the following paragraph to the server:
 location / {
     try_files $uri $uri/ /index.php$is_args$args;
 }
 
-重启一下 nginx
+Restart nginx:
 service nginx restart
 
 systemctl restart nginx 
 
 
-crontab -e ，添加以下四段
+crontab -e ，添加以下四段 (Add the following four paragraphs)
 0 */1 * * * php /home/xxxx/xxxx/cronjob backup
 0 */1 * * * php /home/xxxx/xxxx/cronjob rate
 */1 * * * * php /home/xxxx/xxxx/cronjob checkjob
 59 23 * * * php /home/xxxx/xxxx/cronjob dailyjob
 
 
-管理后端,系统设置->通知设置->通知方式->Telegram信息
+Management backend, system settings -> notification settings -> notification method -> Telegram information:
 php cronjob setTelegram
 
 ```
 
-## 安装后端 DOCKER BACKEND INSTALL
+## DOCKER BACKEND INSTALL
 
 ```
 CENTOS 7
